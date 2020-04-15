@@ -11,3 +11,6 @@ The dataset used in this project is available from NYC Open Data at https://data
 ## Conclusions
 
 ## Recommendations
+Due to time constraints, only a portion of the total entries were utilized for this project analysis. Given more resources, one of the most important next steps for this project would be to adapt the code for distributed computing and use the full amount of data available.
+
+Further incorporation out outside data would also be highly suggested, possibly including 
