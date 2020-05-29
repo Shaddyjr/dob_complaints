@@ -8,7 +8,7 @@
 ## Problem Statement
 In New York City, building violations are frequently reported to the Department of Buildings (DOB), which is often initiated by a citizen. However, the length of time between the report and a response by the DOB may vary greatly depending on the location, violation type, and other factors. Citizens expectations for when a complaint will realistically be inspected would allow them to make more informed decisions, such as whether or not to inquire about their ticket or resend a duplicate complaint. The Department of Buildings would like-wise benefit from the reduction in redundant complaints. To this end, __we will create a predictive model that can estimate the number of day until a complaint is inspected.__
 
-Given the continuous nature of the target, we will explore various __regression models and will use $R^2$ as our metric__ for model selection.
+Given the continuous nature of the target, we will explore various __regression models and will use R^2 as our metric__ for model selection.
 
 ## Executive Summary
 
@@ -29,22 +29,22 @@ The dataset used in this project is available from NYC Open Data at https://data
 ## Data Dictionary
 These data were cleaned from the original source using [the assocated cleaning notebook](./code/dob_data_cleaning.ipynb)
 
-Column | Data Type | Description
-- | - | :-
-special_district|string|Indicates whether or not the building identified in the complaint is located in a Special District.
-complaint_category|string|DOB Complaint Category Codes (01-Accident Construction/Plumbing, etc.)
-unit|string|The most recent unit that was assigned to this complaint. It may have been initially assigned to one unit, and then referred to another unit for disposition.
-zip_code|string|Zip code for the address of the building identified in the complaint.
-med_inc_zip|integer|Median income imputed by zip code.
-date_entered|date|Date complaint was filed
-inspection_date|date|Date complaint was inspected
-days_until_inspection|integer|Number of days between when complaint was filed and when it was officially inspected
+|Column | Data Type | Description|
+|- | - | :-|
+|special_district|string|Indicates whether or not the building identified in the complaint is located in a Special District.|
+|complaint_category|string|DOB Complaint Category Codes (01-Accident Construction/Plumbing, etc.)|
+|unit|string|The most recent unit that was assigned to this complaint. It may have been initially assigned to one unit, and then referred to another unit for disposition.|
+|zip_code|string|Zip code for the address of the building identified in the complaint.|
+|med_inc_zip|integer|Median income imputed by zip code.|
+|date_entered|date|Date complaint was filed|
+|inspection_date|date|Date complaint was inspected|
+|days_until_inspection|integer|Number of days between when complaint was filed and when it was officially inspected|
 
 
 ## Conclusions
 We attempted a number of models, including a Generalized Linear Model (GLM), ARIMA models, and SARIMAX models. Despite our best efforts, there seems to be a significant disconnect between our features and our target, the number of days until a complaint was inspected.
 
-Our best performing model was the __Random Forest__ with a training $R^2$ of 35.65% and a testing $R^2$ of a mere 7.32%. Though this model performed better than the other attempted models, it is still severely underfit and has a high variance. Therefore, __we would not advocate using this model as a practical solution to our problem.__
+Our best performing model was the __Random Forest__ with a training R^2 of 35.65% and a testing R^2 of a mere 7.32%. Though this model performed better than the other attempted models, it is still severely underfit and has a high variance. Therefore, __we would not advocate using this model as a practical solution to our problem.__
 
 While there could certainly be improvements in our workflow, we feel the most likely answer to our original problem is __predicting the number of days until a complaint will be inspected is not closely linked to the features from the Departement of Buildings Complaint dataset or the median income of an area__. 
 
