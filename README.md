@@ -6,13 +6,13 @@
 
 ---
 ## Problem Statement
-In New York City, building violations are frequently reported to the Department of Buildings (DOB), which is often initiated by a citizen. However, the length of time between the report and a response by the DOB may vary greatly depending on the location, violation type, and other factors. Citizens expectations for when a complaint will realistically be inspected would allow them to make more informed decisions, such as whether or not to inquire about their ticket or resend a duplicate complaint. The Department of Buildings would like-wise benefit from the reduction in redundant complaints. To this end, __we will create a predictive model that can estimate the number of day until a complaint is inspected.__
+In New York City, building violations are frequently reported to the Department of Buildings (DOB), which is often initiated by a citizen. However, the length of time between the report and a response by the DOB may vary greatly depending on the location, violation type, and other factors. Citizens' expectations for when a complaint will realistically be inspected would allow them to make more informed decisions, such as whether or not to inquire about their ticket or resend a duplicate complaint. The Department of Buildings would like-wise benefit from the reduction in redundant complaints. To this end, __we will create a predictive model that can estimate the number of days until a complaint is inspected.__
 
 Given the continuous nature of the target, we will explore various __regression models and will use R^2 as our metric__ for model selection.
 
 ## Executive Summary
 
-We gathered data from the Department of Buildings(DOB) on the Open NYC platform around September 2019. These data were mostly categorical and few in number, which proved challenging to work with. Our target variable was also something we would have to construct based on the time a complaint was filed into record and when it was actually inspected. Right away we saw some __odd bevaior - most notably some observations had a negative number of days until inspection,__ meaning some complaints were filed after they were inspected. We later discovered this was due to some on-site inspections leading to staff-filed complaints, which were immediately inspected and filed later. We removed these unusual instances from the dataset.
+We gathered data from the Department of Buildings (DOB) on the Open NYC platform around September 2019. These data features were mostly categorical and few in number, which proved challenging to work with. Our target variable was also something we would have to construct based on the time a complaint was filed into record and when it was actually inspected. Right away we saw some __odd bevaior - most notably some observations had a negative number of days until inspection,__ meaning some complaints were filed after they were inspected. We later discovered this was due to some on-site inspections leading to staff-filed complaints, which were immediately inspected and filed later. We removed these unusual instances from the dataset.
 
 Another issue we ran into was dealing with the sheer size of the dataset. We could not possibly load years of data into local memory, so we opted to sample at regular intervals from our dataset. This invariably leads to an assumption that the observations we sampled were representative of the entire dataset. For the most part, the rest of the cleaning process was fairly standard. 
 
@@ -20,7 +20,7 @@ After some preliminary modeling, we found our features to be lacking at predicti
 
 We then took basic preliminary steps to explore the data, such as looking for trends within the features that may have correlation to our target. We found a number of extreme outliers, suggesting some complaints have taken over 10 years to be inspected! Interestingly, __our target follows the gamma distribution,__ since it's related to "time until an event". We immediately considered using a GLM model. Unfortunately, due to a number of technical issues with the `statsmodels` package, we were unable to reach a satisfactory result. We then attempted a number of regression models, the best of which was a random forest, however it still performed poorly, considering the baseline. Lastly, we attempted to use time-series models, which also proved to be underfit.
 
-__In the end, we were unable to find a satisfactory predictive model, though we may be able to gleem some information from interpretating our best model, a random forest.__
+__In the end, we were unable to find a satisfactory predictive model, though we may be able to glean some information from interpretating our best model, a random forest.__
 
 
 ## Data
